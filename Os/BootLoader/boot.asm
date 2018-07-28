@@ -6,8 +6,8 @@ jmp 0x0000:main
 %include "include/diskIO.inc"
 
 ;constant
-STAGE_2_ADDRESS_SEGMENT EQU 0x660
-STAGE_2_ADDRESS EQU 0
+STAGE_2_ADDRESS_SEGMENT EQU 0x9FBF
+STAGE_2_ADDRESS EQU 0xf
 STACK_SEGMENT_START EQU 0X7C0
 STACK_POINTER_START EQU 510;size of the boot loader(shold not reach the start of the loader when we run stage 1 and after loading stage 2 we can ovveride the boot loader
 
