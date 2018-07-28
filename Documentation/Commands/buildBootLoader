@@ -1,0 +1,8 @@
+to compile the asm (for each asm file):
+nasm input -o output.bin
+to see the assembly output:
+objdump -b binary --adjust-vma=0x9FBFF -m i386 -mi8086 -D boot2.bin
+to create the floppy disk:
+dd if=/dev/zero of=floppy.img count=2880 bs=512 conv=notrunc
+dd if=boot.bin count=1 bs=512 of=floppy.img conv=notrunc
+dd if=boot2.bin seek=1 bs=512 of=floppy.img conv=notrunc

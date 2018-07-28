@@ -1,0 +1,14 @@
+0x00000000 - 0x000003FF - Real Mode Interrupt Vector Table
+0x00000400 - 0x000004FF - BIOS Data Area
+0x00000500 - 0x00007BFF - Unused
+0x00007C00 - 0x00007DFF - Our Bootloader
+0x00007E00 - 0x0009FFFF - Unused
+0x000A0000 - 0x000BFFFF - Video RAM (VRAM) Memory
+0x000B0000 - 0x000B7777 - Monochrome Video Memory
+0x000B8000 - 0x000BFFFF - Color Video Memory
+0x000C0000 - 0x000C7FFF - Video ROM BIOS
+0x000C8000 - 0x000EFFFF - BIOS Shadow Area
+0x000F0000 - 0x000FFFFF - System BIOS
+this is the memory map when the bootloader is loaded
+in the second level we load the second stage bootloader to 0x6600 and make the stack to be on the old bootloader
+current problem in this technique is that we split out region although we do not have to(because the range from 0x00000500 to 0x0009FFFF is our)

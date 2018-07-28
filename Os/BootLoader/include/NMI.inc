@@ -1,0 +1,21 @@
+%IFNDEF _NMI_INC_
+%DEFINE _NMI_INC_
+disableNMI:
+	CLI
+	PUSH AX
+	IN AL,0x70
+	OR AL,0x80
+	OUT 0x70,AL
+	POP AX
+	STI
+ret
+enableNMI:
+	CLI
+	PUSH AX
+	IN AL,0x70
+	AND AL,0x7F
+	OUT 0x70,AL
+	POP AX
+	STI
+ret
+%ENDIF

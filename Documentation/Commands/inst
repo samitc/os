@@ -1,0 +1,7 @@
+in all -o means output file
+nasm -f bin boot.asm -o start.img for compilation to floppy
+ld inputFileA inuptFileB .. -o file
+g++ -c inputFile -o output -c means to generate only o file without link
+nasm -f elf inputFile
+nasm -M file.asm > file.dep ;to see dependency of assembly file
+nasm -i folder ;to add serch folder to include files
