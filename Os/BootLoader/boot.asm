@@ -2,6 +2,7 @@
 [ORG 0x7C00]   ; Origin location
 
 jmp 0x0000:main
+%include "BootData/Memory.inc"
 %include "include/bootConsole.inc"
 %include "include/diskIO.inc"
 
@@ -21,15 +22,10 @@ main:
 	MOV SS,CX
 	
 	CLI
-	INT 0x12;get memory
-	;CALL printReg
-	MOV AL,0x20
-	;CALL printNum
-	MOV AX,0xe801
-	INT 0x15;get memory
-	;CALL printReg
+	CALL lowMemory
+	CALL printReg
 	MOV AL,0xA
-	;CALL printNum
+	CALL printNum
 	;reset floppy to read from the first sector
 	;remember that in init time from the bios dl contain the drive number
 	XOR DL,DL

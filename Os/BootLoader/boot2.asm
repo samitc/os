@@ -8,6 +8,7 @@ KERNEL_ADDRESS EQU 0
 
 JMP main
 
+%include "BootData/Memory.inc"
 %include "include/bootConsole.inc"
 %include "include/GDT.inc"
 %include "include/A20.inc"
@@ -30,11 +31,32 @@ Print:
 PrintDone:
 			ret		; we are done, so return
  
+getMemory:
+	CALL allMemory
+RET
 ;*************************************************;
 ;	Second Stage Loader Entry Point
 ;************************************************;
- 
+
 main:
+	CALL getMemory
+	CALL printReg
+	MOV AL,0xA
+	CALL printNum
+	MOV AX,CX
+	CALL printReg
+	MOV AX,0x7E0
+	MOV ES,AX
+	MOV DI,0
+	lll:
+	MOV AX,[ES:DI]
+	CALL printReg
+	MOV AL,0x20
+	CALL printNum
+	ADD DI,4
+	CMP DI,100
+	JNG lll
+	JMP $
 	CALL checkA20
 	CALL printReg
 	MOV AL,0x20
